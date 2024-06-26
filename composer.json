@@ -1,0 +1,17 @@
+{
+    "name": "dannydeeps/my-cms",
+    "autoload": {
+        "psr-4": {
+            "MyCms\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "DannyDeeps",
+            "email": "contactdanielhuggins@gmail.com"
+        }
+    ],
+    "require": {
+        "league/plates": "^3.5"
+    }
+}
