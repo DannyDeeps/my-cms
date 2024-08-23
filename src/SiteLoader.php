@@ -5,18 +5,18 @@ namespace MyCms;
 final class SiteLoader {
   private $loaded = false;
 
-  public function load(string $hostName): void {
-    // TODO: Create database query
-    switch ($hostName) {
-      case 'demositeone.com':
-      case 'demositetwo.com':
-      case 'demositethree.com':
-      case 'panel.demositeone.com':
-        $this->loaded = true;
-        break;
+  public function __construct(
+    private Database $db
+  ) {}
 
-      default:
-        break;
-    }
+  
+
+  public function loadFromHost(string $hostName): void {
+    $siteEntry = $this->getSiteEntryByHostName($hostName);
+    die('<pre>' . print_r($siteEntry, true) . '</pre>');
+  }
+
+  private function getSiteEntryByHostName(string $hostName): array {
+    return $this->db->query('SELECT * FROM sites');
   }
 }

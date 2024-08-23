@@ -3,7 +3,25 @@
 namespace MyCms;
 
 final class Database {
-  public function connect(): void {
-    
+  private $pdo;
+
+  private function connect(): ?\PDO {
+    if ($this->pdo === null) {
+      try {
+        $this->pdo = new \PDO('sqlite:../db/mycms.db');
+      } catch (\PDOException $e) {
+        // TODO: Log system error
+        echo $e->getMessage();
+        $this->pdo = null;
+      }
+    }
+
+    return $this->pdo;
+  }
+
+  public function query(string $sql): array {
+    $this->connect();
+    $query = $this->pdo->query($sql);
+    return $query->fetchAll();
   }
 }
