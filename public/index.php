@@ -5,7 +5,11 @@ const THEMES_DIR = __DIR__ . '/../templates/themes/';
 
 require_once ROOT . '/vendor/autoload.php';
 
-use MyCms\{ SiteLoader, Database };
+use MyCms\{
+  SiteLoader,
+  Database,
+  Router
+};
 use League\Plates\{ Engine, Template\Theme };
 
 $database = new Database();
@@ -16,4 +20,4 @@ $siteLoader->loadFromHost($_SERVER['HTTP_HOST']);
 $viewEngine = new League\Plates\Engine(THEMES_DIR . $siteLoader->getProperty('theme'));
 $viewEngine->addFolder('themes', THEMES_DIR);
 
-$router = new Router($viewEngine);
+$router = new Router($viewEngine, $_SERVER['REQUEST_URI']);

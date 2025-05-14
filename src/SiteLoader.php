@@ -4,19 +4,22 @@ namespace MyCms;
 
 final class SiteLoader {
   private $loaded = false;
+  private $site = ['theme' => ''];
 
   public function __construct(
     private Database $db
   ) {}
 
-  
-
   public function loadFromHost(string $hostName): void {
     $siteEntry = $this->getSiteEntryByHostName($hostName);
-    die('<pre>' . print_r($siteEntry, true) . '</pre>');
+    // die('<pre>' . print_r($siteEntry, true) . '</pre>');
   }
 
   private function getSiteEntryByHostName(string $hostName): array {
-    return $this->db->query('SELECT * FROM sites');
+    return $this->db->query('SELECT * FROM sites WHERE hostname = ?');
+  }
+
+  public function getProperty(string $property): string {
+    return $this->site[$property];
   }
 }
