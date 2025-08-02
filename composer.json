@@ -8,10 +8,13 @@
     "authors": [
         {
             "name": "DannyDeeps",
-            "email": "contactdanielhuggins@gmail.com"
+            "email": "dannyhuggins@proton.me"
         }
     ],
     "require": {
         "league/plates": "^3.5"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.23"
     }
 }
